@@ -20,6 +20,15 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"startDate\": \"2022-10-23 18:50:10 +0530\",\r\n    \"endate\" : \"2023-01-17 09:10:02 +0530\",\r\n    \"department\": \"Tech\",\r\n    \"integer\": null,\r\n    \"itemBy\" : null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": "http://localhost:8080/api/total_items"
 			},
 			"response": []
