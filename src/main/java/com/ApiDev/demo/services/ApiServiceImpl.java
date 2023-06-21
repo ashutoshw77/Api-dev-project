@@ -44,7 +44,8 @@ public class ApiServiceImpl implements ApiService{
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");
 		Date startDate = dateFormat.parse(apiRequest.getStartDate()), endDate = dateFormat.parse(apiRequest.getEndate());
 		for(SoftwarePurchase curPurchase:purchases) {
-			if(curPurchase.getDate().compareTo(startDate) >= 0 && curPurchase.getDate().compareTo(endDate) <=0) {
+			if(curPurchase.getDate().compareTo(startDate) >= 0 && curPurchase.getDate().compareTo(endDate) <=0 &&
+					curPurchase.getDepartment().contentEquals(apiRequest.getDepartment())) {
 				resInteger++;
 			}
 		}
@@ -102,6 +103,7 @@ public class ApiServiceImpl implements ApiService{
 		for(SoftwarePurchase curPurchase:purchases) {
 			if(curPurchase.getDate().compareTo(startDate) >= 0 && curPurchase.getDate().compareTo(endDate) <=0) {
 				countsMap.put(curPurchase.getDepartment(), countsMap.getOrDefault(curPurchase.getDepartment(), 0)+1);
+                totalCount++;
 			}
 		}
 		StringBuilder resStringBuilder = new StringBuilder();
@@ -116,8 +118,59 @@ public class ApiServiceImpl implements ApiService{
 
 	@Override
 	public Object getMonthlySales(ApiRequest apiRequest) {
-		return null;
-
+		Map<String, Double> salesMap = new HashMap<>();
+		salesMap.put("Jan", 0.0);salesMap.put("Feb", 0.0);
+		salesMap.put("Mar", 0.0);salesMap.put("Apr", 0.0);
+		salesMap.put("May", 0.0);salesMap.put("Jun", 0.0);
+		salesMap.put("Jul", 0.0);salesMap.put("Aug", 0.0);
+		salesMap.put("Sep", 0.0);salesMap.put("Oct", 0.0);
+		salesMap.put("Dec", 0.0);salesMap.put("Nov", 0.0);
+		for(SoftwarePurchase curPurchase:purchases) {
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(curPurchase.getDate());
+			int month = calendar.get(Calendar.MONTH);
+			switch (month) {
+				case Calendar.JANUARY:
+					salesMap.put("Jan", salesMap.get("Jan") + curPurchase.getAmount());
+					break;
+				case Calendar.FEBRUARY:
+					salesMap.put("Feb", salesMap.get("Feb") + curPurchase.getAmount());
+					break;
+				case Calendar.MARCH:
+					salesMap.put("Mar", salesMap.get("Mar") + curPurchase.getAmount());
+					break;
+				case Calendar.APRIL:
+					salesMap.put("Apr", salesMap.get("Apr") + curPurchase.getAmount());
+					break;
+				case Calendar.MAY:
+					salesMap.put("May", salesMap.get("May") + curPurchase.getAmount());
+					break;
+				case Calendar.JUNE:
+					salesMap.put("Jun", salesMap.get("Jun") + curPurchase.getAmount());
+					break;
+				case Calendar.JULY:
+					salesMap.put("Jul", salesMap.get("Jul") + curPurchase.getAmount());
+					break;
+				case Calendar.AUGUST:
+					salesMap.put("Aug", salesMap.get("Aug") + curPurchase.getAmount());
+					break;
+				case Calendar.SEPTEMBER:
+					salesMap.put("Sep", salesMap.get("Sep") + curPurchase.getAmount());
+					break;
+				case Calendar.OCTOBER:
+					salesMap.put("Oct", salesMap.get("Oct") + curPurchase.getAmount());
+					break;
+				case Calendar.NOVEMBER:
+					salesMap.put("Nov", salesMap.get("Nov") + curPurchase.getAmount());
+					break;
+				case Calendar.DECEMBER:
+					salesMap.put("Dec", salesMap.get("Dec") + curPurchase.getAmount());
+					break;
+				default:
+					break;
+			}
+		}
+		return salesMap;
 	}
 
 	@Data

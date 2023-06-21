@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "052f7d88-ccba-4822-851a-cf7b51e9422a",
+		"name": "ApiDev_endpoints",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28109144"
+	},
+	"item": [
+		{
+			"name": "Import the data from cv file",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/importCSV"
+			},
+			"response": []
+		},
+		{
+			"name": "API1  - total items",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "http://localhost:8080/api/total_items"
+			},
+			"response": []
+		},
+		{
+			"name": "Api 2 - nth_most_total_item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"startDate\": \"2022-10-23 18:50:10 +0530\",\r\n    \"endate\" : \"2023-01-17 09:10:02 +0530\",\r\n    \"department\": null,\r\n    \"integer\": 2 , // nth most \r\n    \"itemBy\" : \"price\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/nth_most_total_item"
+			},
+			"response": []
+		},
+		{
+			"name": "Api 3 Percentage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"startDate\": \"2022-10-23 18:50:10 +0530\",\r\n    \"endate\" : \"2023-01-17 09:10:02 +0530\",\r\n    \"department\": null,\r\n    \"integer\": 2 ,\r\n    \"itemBy\" : \"price\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/percentage_of_department_wise_sold_items"
+			},
+			"response": []
+		},
+		{
+			"name": "Api -4 monthly slales",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"startDate\": null,\r\n    \"endate\" : null,\r\n    \"department\": null,\r\n    \"integer\": null ,\r\n    \"itemBy\" : null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/monthly_sales"
+			},
+			"response": []
+		}
+	]
+}
